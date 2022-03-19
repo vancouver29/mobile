@@ -1,12 +1,8 @@
 import React from 'react';
-import { Text, View } from 'react-native';
+import Screens from './screens';
 
 const Main = () => {
-  return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Hello world!</Text>
-    </View>
-  );
+  return <Screens />;
 };
 
 export default Main;

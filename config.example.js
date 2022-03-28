@@ -2,6 +2,7 @@
 // https://medium.com/@peterpme/environment-variables-in-expo-using-release-channels-4934594c5307
 // https://alxmrtnz.com/thoughts/2019/03/12/environment-variables-and-workflow-in-expo.html
 import Constants from 'expo-constants';
+delete GLOBAL.XMLHttpRequest;
 
 // get the localhost ip address at runtime using the Expo manifest
 // this enables both simulator and physical device debugging with our local api
@@ -13,12 +14,13 @@ if (Constants.manifest.debuggerHost) {
 // set environment variables
 const ENV = {
   dev: {
-    API_URI: `http://${localhost}:4000/api`
+    API_URI: `http://${localhost}:4000/api`,
+    // API_URI: `http://10.10.10.190:4000/api`,
   },
   prod: {
     // update the API_URI value with your publicly deployed API address
-    API_URI: 'https://<PUBLIC-API-URI>'
-  }
+    API_URI: 'https://<PUBLIC-API-URI>',
+  },
 };
 
 const getEnvVars = (env = Constants.manifest.releaseChannel) => {

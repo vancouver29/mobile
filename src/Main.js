@@ -5,11 +5,13 @@ import Screens from './screens';
 import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client';
 // import environment configuration
 import getEnvVars from '../config';
+
 const { API_URI } = getEnvVars();
-// configure our API URI & cache
+
 const uri = API_URI;
+
 const cache = new InMemoryCache();
-// configure Apollo Client
+
 const client = new ApolloClient({
   uri,
   cache,

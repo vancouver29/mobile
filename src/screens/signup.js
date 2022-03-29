@@ -41,7 +41,8 @@ const SignUp = (props) => {
     </React.Fragment>
   );
 };
-SignIn.navigationOptions = {
+
+SignUp.navigationOptions = {
   title: 'Register',
 };
 export default SignUp;

@@ -7,6 +7,7 @@ import { createStackNavigator } from 'react-navigation-stack';
 import AuthLoading from './authloading';
 import SignIn from './signin';
 import Settings from './settings';
+import SignUp from './signup';
 
 // import screen components
 import Feed from './feed';
@@ -17,6 +18,7 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 const AuthStack = createStackNavigator({
   SignIn: SignIn,
+  SignUp: SignUp,
 });
 
 const SettingsStack = createStackNavigator({

@@ -1,18 +1,18 @@
 import React from 'react';
-import { View, Button, Text } from 'react-native';
+import { Text } from 'react-native';
 import * as SecureStore from 'expo-secure-store';
 import { useMutation, gql } from '@apollo/client';
 
 import UserForm from '../components/UserForm';
 import Loading from '../components/Loading';
 
-const SIGNIN_USER = gql`
-  mutation signIn($email: String, $password: String!) {
-    signIn(email: $email, password: $password)
+const SIGNUP_USER = gql`
+  mutation signUp($email: String!, $username: String!, $password: String!) {
+    signUp(email: $email, username: $username, password: $password)
   }
 `;
 
-const SignIn = (props) => {
+const SignUp = (props) => {
   // store the token with a key value of `token`
   // after the token is stored navigate to the app's main screen
   const storeToken = (token) => {
@@ -21,9 +21,9 @@ const SignIn = (props) => {
     );
   };
 
-  const [signIn, { loading, error }] = useMutation(SIGNIN_USER, {
+  const [signUp, { loading, error }] = useMutation(SIGNUP_USER, {
     onCompleted: (data) => {
-      storeToken(data.signIn);
+      storeToken(data.signUp);
     },
   });
 
@@ -33,17 +33,15 @@ const SignIn = (props) => {
   return (
     <React.Fragment>
       {error && <Text>Error signing in!</Text>}
-      <View>
-        <UserForm
-          action={signIn}
-          formType="signIn"
-          navigation={props.navigation}
-        />
-      </View>
+      <UserForm
+        action={signUp}
+        formType="signUp"
+        navigation={props.navigation}
+      />
     </React.Fragment>
   );
 };
 SignIn.navigationOptions = {
-  title: 'Sign In',
+  title: 'Register',
 };
-export default SignIn;
+export default SignUp;

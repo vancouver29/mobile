@@ -5,15 +5,30 @@ import styled from 'styled-components/native';
 const FormView = styled.View`
   padding: 10px;
 `;
+
 const StyledInput = styled.TextInput`
   border: 1px solid gray;
   font-size: 18px;
   padding: 8px;
   margin-bottom: 24px;
 `;
+
 const FormLabel = styled.Text`
   font-size: 18px;
   font-weight: bold;
+`;
+
+const FormButton = styled.TouchableOpacity`
+  background: #0077cc;
+  width: 100%;
+  padding: 8px;
+`;
+
+const ButtonText = styled.Text`
+  text-align: center;
+  color: #fff;
+  font-weight: bold;
+  font-size: 18px;
 `;
 
 const UserForm = (props) => {
@@ -22,7 +37,12 @@ const UserForm = (props) => {
   const [password, setPassword] = useState();
 
   const handleSubmit = () => {
-    // this function is called when the user presses the form button
+    props.action({
+      variables: {
+        email: email,
+        password: password,
+      },
+    });
   };
 
   return (
@@ -44,7 +64,9 @@ const UserForm = (props) => {
         textContentType="password"
         secureTextEntry={true}
       />
-      <Button title="Log In" />
+      <FormButton onPress={handleSubmit}>
+        <ButtonText>Submit</ButtonText>
+      </FormButton>
     </FormView>
   );
 };
